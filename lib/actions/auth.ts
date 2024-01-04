@@ -1,6 +1,8 @@
 "use server";
 
+import { isRedirectError } from "next/dist/client/components/redirect";
 import bcryptjs from "bcryptjs";
+import { AuthError } from "next-auth";
 import type * as z from "zod";
 
 import { loginSchema, registerSchema } from "@/lib/validations/auth";
@@ -63,7 +65,15 @@ export async function login(values: z.infer<typeof loginSchema>) {
       redirectTo: "/",
     });
   } catch (error) {
-    console.log("登录错误：", error);
+    if (error instanceof AuthError) {
+      switch (error.type) {
+        case "CredentialsSignin":
+          return { error: "Invalid credentials!" };
+        default:
+          return { error: "Something went wrong!" };
+      }
+    }
+
     throw error;
   }
 }
