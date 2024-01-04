@@ -1,30 +1,30 @@
-"use server"
+"use server";
 
-import bcryptjs from "bcryptjs"
-import type * as z from "zod"
+import bcryptjs from "bcryptjs";
+import type * as z from "zod";
 
-import { loginSchema, registerSchema } from "@/lib/validations/auth"
+import { loginSchema, registerSchema } from "@/lib/validations/auth";
 
-import { signIn } from "../auth"
-import { db } from "../db"
+import { signIn } from "../auth";
+import { db } from "../db";
 
 export async function register(values: z.infer<typeof registerSchema>) {
-  const validatedFields = registerSchema.safeParse(values)
+  const validatedFields = registerSchema.safeParse(values);
 
   if (!validatedFields.success) {
-    return { error: "Invalid fields!" }
+    return { error: "Invalid fields!" };
   }
 
-  const { name, email, password } = validatedFields.data
-  const hashPassword = await bcryptjs.hash(password, 10)
+  const { name, email, password } = validatedFields.data;
+  const hashPassword = await bcryptjs.hash(password, 10);
   const existingUser = await db.user.findUnique({
     where: {
       email,
     },
-  })
+  });
 
   if (existingUser) {
-    return { error: "Email already in use!" }
+    return { error: "Email already in use!" };
   }
 
   await db.user.create({
@@ -33,37 +33,37 @@ export async function register(values: z.infer<typeof registerSchema>) {
       email: email,
       password: hashPassword,
     },
-  })
+  });
 
-  return { success: "Account creation succeeded" }
+  return { success: "Account creation succeeded" };
 }
 
 export async function login(values: z.infer<typeof loginSchema>) {
-  const validatedFields = loginSchema.safeParse(values)
+  const validatedFields = loginSchema.safeParse(values);
 
   if (!validatedFields.success) {
-    return { error: "Invalid fields!" }
+    return { error: "Invalid fields!" };
   }
 
-  const { email, password } = validatedFields.data
+  const { email, password } = validatedFields.data;
   const existingUser = await db.user.findUnique({
     where: {
       email,
     },
-  })
+  });
 
   if (!existingUser || !existingUser.email || !existingUser.password) {
-    return { error: "Email does not exist!" }
+    return { error: "Email does not exist!" };
   }
 
   try {
-    const result = await signIn("credentials", {
+    await signIn("credentials", {
       email,
       password,
       redirectTo: "/",
-    })
-    console.log("~~logined~~", result)
+    });
   } catch (error) {
-    console.log("登录错误：", error)
+    console.log("登录错误：", error);
+    throw error;
   }
 }
