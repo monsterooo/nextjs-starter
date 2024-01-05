@@ -1,25 +1,27 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import type * as z from "zod"
-
-import { register } from "@/lib/actions/auth"
-import { registerSchema } from "@/lib/validations/auth"
-import { Button } from "@/components/ui/button"
+import { useState, useTransition } from "react";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import type * as z from "zod";
+import { register } from "@/lib/actions/auth";
+import { registerSchema } from "@/lib/validations/auth";
+import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
   FormField,
   FormItem,
   FormLabel,
-} from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import ErrorMessage from "../message/error-message";
+import SuccessMessage from "../message/success-message";
 
 const RegisterForm = () => {
-  const [success, setSuccess] = useState("")
-  const [error, setError] = useState("")
+  const [isPending, startTransition] = useTransition();
+  const [success, setSuccess] = useState<string | undefined>("");
+  const [error, setError] = useState<string | undefined>("");
   const form = useForm<z.infer<typeof registerSchema>>({
     resolver: zodResolver(registerSchema),
     defaultValues: {
@@ -27,15 +29,20 @@ const RegisterForm = () => {
       email: "",
       password: "",
     },
-  })
+  });
 
   const handleSubmit = async (values: z.infer<typeof registerSchema>) => {
     try {
-      register(values)
+      startTransition(() => {
+        register(values).then((data) => {
+          setSuccess(data?.success);
+          setError(data?.error);
+        });
+      });
     } catch (error) {
-      console.log()
+      setError("Something went wrong");
     }
-  }
+  };
 
   return (
     <div>
@@ -48,7 +55,11 @@ const RegisterForm = () => {
               <FormItem>
                 <FormLabel>Name</FormLabel>
                 <FormControl>
-                  <Input {...field} placeholder="monsterooo" />
+                  <Input
+                    {...field}
+                    placeholder="monsterooo"
+                    disabled={isPending}
+                  />
                 </FormControl>
               </FormItem>
             )}
@@ -64,6 +75,7 @@ const RegisterForm = () => {
                     {...field}
                     placeholder="example@gmail.com"
                     type="email"
+                    disabled={isPending}
                   />
                 </FormControl>
               </FormItem>
@@ -80,19 +92,27 @@ const RegisterForm = () => {
                     {...field}
                     placeholder="Your password"
                     type="password"
+                    disabled={isPending}
                   />
                 </FormControl>
               </FormItem>
             )}
           />
-          <div className="mt-2">{success || error}</div>
           <div className="mt-2">
-            <Button type="submit">Create an account</Button>
+            <ErrorMessage message={error} />
+          </div>
+          <div className="mt-2">
+            <SuccessMessage message={success} />
+          </div>
+          <div className="mt-2">
+            <Button className="w-full" type="submit" disabled={isPending}>
+              Create an account
+            </Button>
           </div>
         </form>
       </Form>
     </div>
-  )
-}
+  );
+};
 
-export { RegisterForm }
+export { RegisterForm };

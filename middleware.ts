@@ -11,6 +11,7 @@ import { authOptions } from "./lib/auth.config";
 const { auth } = NextAuth(authOptions);
 
 export default auth((req) => {
+  console.log("~~auth~~", req.auth);
   const { nextUrl } = req;
   const isLoggedIn = !!req.auth;
 

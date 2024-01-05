@@ -1,17 +1,10 @@
 import bcrypt from "bcryptjs";
-import NextAuth, { type NextAuthConfig } from "next-auth";
+import { type NextAuthConfig } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
-import EmailProvider from "next-auth/providers/email";
 import GitHubProvider from "next-auth/providers/github";
-import { Client } from "postmark";
-
 import { env } from "@/env.mjs";
-import { siteConfig } from "@/config/site";
-
 import { db } from "./db";
 import { loginSchema } from "./validations/auth";
-
-const postmarkClient = new Client(env.POSTMARK_API_TOKEN);
 
 export const authOptions: NextAuthConfig = {
   providers: [

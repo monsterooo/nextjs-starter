@@ -1,6 +1,7 @@
 "use server";
 
 import { isRedirectError } from "next/dist/client/components/redirect";
+import { DEFAULT_LOGIN_REDIRECT } from "@/routes";
 import bcryptjs from "bcryptjs";
 import { AuthError } from "next-auth";
 import type * as z from "zod";
@@ -40,7 +41,10 @@ export async function register(values: z.infer<typeof registerSchema>) {
   return { success: "Account creation succeeded" };
 }
 
-export async function login(values: z.infer<typeof loginSchema>) {
+export async function login(
+  values: z.infer<typeof loginSchema>,
+  callbackUrl?: string | null
+) {
   const validatedFields = loginSchema.safeParse(values);
 
   if (!validatedFields.success) {
@@ -62,7 +66,7 @@ export async function login(values: z.infer<typeof loginSchema>) {
     await signIn("credentials", {
       email,
       password,
-      redirectTo: "/",
+      redirectTo: callbackUrl || DEFAULT_LOGIN_REDIRECT,
     });
   } catch (error) {
     if (error instanceof AuthError) {

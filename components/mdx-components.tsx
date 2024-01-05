@@ -1,7 +1,6 @@
 import * as React from "react";
 import Image from "next/image";
-
-// import { useMDXComponent } from "next-contentlayer/hooks"
+import { useMDXComponent } from "next-contentlayer/hooks";
 
 import { cn } from "@/lib/utils";
 import { Callout } from "@/components/callout";
@@ -148,7 +147,8 @@ const components = {
       {...props}
     />
   ),
-  Image,
+  // eslint-disable-next-line jsx-a11y/alt-text
+  Image: (props) => <Image {...props} />,
   Callout,
   Card: MdxCard,
 };
@@ -158,9 +158,11 @@ interface MdxProps {
 }
 
 export function Mdx({ code }: MdxProps) {
-  // const Component = useMDXComponent(code);
+  const Component = useMDXComponent(code);
 
   return (
-    <div className="mdx">{/* <Component components={components} /> */}</div>
+    <div className="mdx">
+      <Component components={components} />{" "}
+    </div>
   );
 }

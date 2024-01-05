@@ -1,15 +1,15 @@
-import Link from "next/link"
+import Link from "next/link";
 
-import { cn } from "@/lib/utils"
-import { buttonVariants } from "@/components/ui/button"
-import { RegisterForm } from "@/components/auth/register-form"
-import { Icons } from "@/components/icons"
-import { UserAuthForm } from "@/components/user-auth-form"
+import { cn } from "@/lib/utils";
+import { buttonVariants } from "@/components/ui/button";
+import { RegisterForm } from "@/components/auth/register-form";
+import { Icons } from "@/components/icons";
+import { UserAuthForm } from "@/components/user-auth-form";
 
 export const metadata = {
   title: "Create an account",
   description: "Create an account to get started.",
-}
+};
 
 export default async function RegisterPage() {
   return (
@@ -35,8 +35,8 @@ export default async function RegisterPage() {
               Enter your email below to create your account
             </p>
           </div>
-          <UserAuthForm />
           <RegisterForm />
+          <UserAuthForm />
           <p className="px-8 text-center text-sm text-muted-foreground">
             By clicking continue, you agree to our{" "}
             <Link
@@ -57,5 +57,5 @@ export default async function RegisterPage() {
         </div>
       </div>
     </div>
-  )
+  );
 }

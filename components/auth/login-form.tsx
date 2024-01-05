@@ -1,11 +1,10 @@
 "use client";
 
-import { startTransition, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useState, useTransition } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import type * as z from "zod";
-
 import { login } from "@/lib/actions/auth";
 import { loginSchema } from "@/lib/validations/auth";
 import { Button } from "@/components/ui/button";
@@ -17,10 +16,12 @@ import {
   FormLabel,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import ErrorMessage from "../message/error-message";
 
 const LoginForm = () => {
-  const router = useRouter();
-  const [success, setSuccess] = useState("");
+  const searchParams = useSearchParams();
+  const callbackUrl = searchParams.get("callbackUrl");
+  const [isPending, startTransition] = useTransition();
   const [error, setError] = useState("");
   const form = useForm<z.infer<typeof loginSchema>>({
     resolver: zodResolver(loginSchema),
@@ -31,11 +32,17 @@ const LoginForm = () => {
   });
 
   const handleSubmit = async (values: z.infer<typeof loginSchema>) => {
-    try {
-      login(values);
-    } catch (error) {
-      console.error(error);
-    }
+    startTransition(() => {
+      login(values, callbackUrl)
+        .then((data) => {
+          if (data?.error) {
+            setError(data.error);
+          }
+        })
+        .catch(() => {
+          setError("Something went wrong");
+        });
+    });
   };
 
   return (
@@ -51,6 +58,7 @@ const LoginForm = () => {
                 <FormControl>
                   <Input
                     {...field}
+                    disabled={isPending}
                     placeholder="example@gmail.com"
                     type="email"
                   />
@@ -67,6 +75,7 @@ const LoginForm = () => {
                 <FormControl>
                   <Input
                     {...field}
+                    disabled={isPending}
                     placeholder="Your password"
                     type="password"
                   />
@@ -74,9 +83,13 @@ const LoginForm = () => {
               </FormItem>
             )}
           />
-          <div className="mt-2">{success || error}</div>
           <div className="mt-2">
-            <Button type="submit">Login</Button>
+            <ErrorMessage message={error} />
+          </div>
+          <div className="mt-2">
+            <Button className="w-full" type="submit" disabled={isPending}>
+              Login
+            </Button>
           </div>
         </form>
       </Form>

@@ -8,7 +8,6 @@ module.exports = {
     "^(react/(.*)$)|^(react$)",
     "^(next/(.*)$)|^(next$)",
     "<THIRD_PARTY_MODULES>",
-    "",
     "^types$",
     "^@/env(.*)$",
     "^@/types/(.*)$",
@@ -19,7 +18,6 @@ module.exports = {
     "^@/components/(.*)$",
     "^@/styles/(.*)$",
     "^@/app/(.*)$",
-    "",
     "^[./]",
   ],
   importOrderSeparation: false,
@@ -29,4 +27,4 @@ module.exports = {
   importOrderMergeDuplicateImports: true,
   importOrderCombineTypeAndValueImports: true,
   plugins: ["@ianvs/prettier-plugin-sort-imports"],
-}
+};

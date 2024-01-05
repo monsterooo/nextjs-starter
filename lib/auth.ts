@@ -1,9 +1,6 @@
 import { PrismaAdapter } from "@auth/prisma-adapter";
-import NextAuth, { type NextAuthConfig } from "next-auth";
-
-import { env } from "@/env.mjs";
+import NextAuth from "next-auth";
 import { db } from "@/lib/db";
-
 import { authOptions } from "./auth.config";
 
 export const {
@@ -25,10 +22,10 @@ export const {
           id: user.id,
         },
       });
+
       // TODO add email verification
       if (!existingUser) return false;
 
-      console.log("~~signIn 返回~~", true);
       return true;
     },
     async session({ token, session }) {
@@ -40,7 +37,6 @@ export const {
         session.user.email = token.email;
       }
 
-      console.log("~~session 返回~~", session);
       return session;
     },
     async jwt({ token, user }) {
@@ -61,7 +57,6 @@ export const {
       token.name = existingUser.name;
       token.email = existingUser.email;
 
-      console.log("~~jwt 返回~~", token);
       return token;
     },
   },
