@@ -172,7 +172,7 @@ dependencies:
     version: 0.92.0(prop-types@15.8.1)(react@18.2.0)
   next:
     specifier: 14.0.4
-    version: 14.0.4(@babel/core@7.21.4)(@opentelemetry/api@1.1.0)(react-dom@18.2.0)(react@18.2.0)
+    version: 14.0.4(@babel/core@7.21.4)(@opentelemetry/api@1.7.0)(react-dom@18.2.0)(react@18.2.0)
   next-auth:
     specifier: ^5.0.0-beta.4
     version: 5.0.0-beta.4(next@14.0.4)(nodemailer@6.9.1)(react@18.2.0)
@@ -224,6 +224,9 @@ dependencies:
   tailwindcss-animate:
     specifier: ^1.0.5
     version: 1.0.5(tailwindcss@3.3.1)
+  uuid:
+    specifier: ^9.0.1
+    version: 9.0.1
   zod:
     specifier: ^3.21.4
     version: 3.21.4
@@ -6583,7 +6586,7 @@ packages:
         optional: true
     dependencies:
       '@auth/core': 0.18.4(nodemailer@6.9.1)
-      next: 14.0.4(@babel/core@7.21.4)(@opentelemetry/api@1.1.0)(react-dom@18.2.0)(react@18.2.0)
+      next: 14.0.4(@babel/core@7.21.4)(@opentelemetry/api@1.7.0)(react-dom@18.2.0)(react@18.2.0)
       nodemailer: 6.9.1
       react: 18.2.0
     dev: false
@@ -6599,7 +6602,7 @@ packages:
       '@contentlayer/core': 0.3.4(esbuild@0.17.18)
       '@contentlayer/utils': 0.3.4
       contentlayer: 0.3.1(esbuild@0.17.18)
-      next: 14.0.4(@babel/core@7.21.4)(@opentelemetry/api@1.1.0)(react-dom@18.2.0)(react@18.2.0)
+      next: 14.0.4(@babel/core@7.21.4)(@opentelemetry/api@1.7.0)(react-dom@18.2.0)(react@18.2.0)
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
     transitivePeerDependencies:
@@ -6616,12 +6619,12 @@ packages:
       react: '*'
       react-dom: '*'
     dependencies:
-      next: 14.0.4(@babel/core@7.21.4)(@opentelemetry/api@1.1.0)(react-dom@18.2.0)(react@18.2.0)
+      next: 14.0.4(@babel/core@7.21.4)(@opentelemetry/api@1.7.0)(react-dom@18.2.0)(react@18.2.0)
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
     dev: false
 
-  /next@14.0.4(@babel/core@7.21.4)(@opentelemetry/api@1.1.0)(react-dom@18.2.0)(react@18.2.0):
+  /next@14.0.4(@babel/core@7.21.4)(@opentelemetry/api@1.7.0)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-qbwypnM7327SadwFtxXnQdGiKpkuhaRLE2uq62/nRul9cj9KhQ5LhHmlziTNqUidZotw/Q1I9OjirBROdUJNgA==}
     engines: {node: '>=18.17.0'}
     hasBin: true
@@ -6637,7 +6640,7 @@ packages:
         optional: true
     dependencies:
       '@next/env': 14.0.4
-      '@opentelemetry/api': 1.1.0
+      '@opentelemetry/api': 1.7.0
       '@swc/helpers': 0.5.2
       busboy: 1.6.0
       caniuse-lite: 1.0.30001481
@@ -8476,6 +8479,11 @@ packages:
 
   /uuid@8.3.2:
     resolution: {integrity: sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==}
+    hasBin: true
+    dev: false
+
+  /uuid@9.0.1:
+    resolution: {integrity: sha512-b+1eJOlsR9K8HJpow9Ok3fiWOWSIcIzXodvv0rQjVoOVNpWMpxf1wZNpt4y9h10odCNrqnYp1OBzRktckBe3sA==}
     hasBin: true
     dev: false
 

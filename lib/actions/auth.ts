@@ -1,15 +1,14 @@
 "use server";
 
-import { isRedirectError } from "next/dist/client/components/redirect";
 import { DEFAULT_LOGIN_REDIRECT } from "@/routes";
 import bcryptjs from "bcryptjs";
 import { AuthError } from "next-auth";
+import { v4 as uuidv4 } from "uuid";
 import type * as z from "zod";
-
 import { loginSchema, registerSchema } from "@/lib/validations/auth";
-
 import { signIn } from "../auth";
 import { db } from "../db";
+import { sendVerificationEmail } from "../mail";
 
 export async function register(values: z.infer<typeof registerSchema>) {
   const validatedFields = registerSchema.safeParse(values);
@@ -38,7 +37,11 @@ export async function register(values: z.infer<typeof registerSchema>) {
     },
   });
 
-  return { success: "Account creation succeeded" };
+  // send email verification token
+  const verificationToken = await generateVerificationToken(email);
+  await sendVerificationEmail();
+
+  return { success: "Confirmation email sent!" };
 }
 
 export async function login(
@@ -80,4 +83,31 @@ export async function login(
 
     throw error;
   }
+}
+
+async function generateVerificationToken(email: string) {
+  const token = uuidv4();
+  const expires = new Date(new Date().getTime() + 3600 * 1000);
+
+  const existingToken = await db.verificationToken.findFirst({
+    where: {
+      email,
+    },
+  });
+  if (existingToken) {
+    await db.verificationToken.delete({
+      where: {
+        id: existingToken.id,
+      },
+    });
+  }
+  const verificationToken = await db.verificationToken.create({
+    data: {
+      email,
+      token,
+      expires,
+    },
+  });
+
+  return verificationToken;
 }
