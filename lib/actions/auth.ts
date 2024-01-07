@@ -8,7 +8,10 @@ import type * as z from "zod";
 import { loginSchema, registerSchema } from "@/lib/validations/auth";
 import { signIn } from "../auth";
 import { db } from "../db";
-import { sendVerificationEmail } from "../mail";
+import { SendVerifyEmail } from "../email";
+import { isProd } from "../utils";
+
+const domain = process.env.NEXT_PUBLIC_APP_URL;
 
 export async function register(values: z.infer<typeof registerSchema>) {
   const validatedFields = registerSchema.safeParse(values);
@@ -39,7 +42,25 @@ export async function register(values: z.infer<typeof registerSchema>) {
 
   // send email verification token
   const verificationToken = await generateVerificationToken(email);
-  await sendVerificationEmail();
+  const confirmLink = `${domain}/auth/email-verification?token=${verificationToken.token}`;
+
+  if (isProd()) {
+    // send verify email
+    try {
+      await SendVerifyEmail({
+        email,
+        title: "Confirm your email",
+        link: confirmLink,
+      });
+    } catch (error) {
+      return {
+        error:
+          "Failed to send the confirmation email, Re-log in to send again.",
+      };
+    }
+  } else {
+    console.log("verify url:", confirmLink);
+  }
 
   return { success: "Confirmation email sent!" };
 }
@@ -80,9 +101,54 @@ export async function login(
           return { error: "Something went wrong!" };
       }
     }
-
     throw error;
   }
+}
+
+export async function emailVerification(token: string) {
+  const existingToken = await db.verificationToken.findUnique({
+    where: {
+      token,
+    },
+  });
+
+  if (!existingToken) {
+    return { error: "Token does not exist!" };
+  }
+
+  const hasExpired = new Date(existingToken.expires) < new Date();
+
+  if (hasExpired) {
+    return { error: "Token has expired!" };
+  }
+
+  const existingUser = await db.user.findUnique({
+    where: {
+      email: existingToken.email,
+    },
+  });
+
+  if (!existingUser) {
+    return { error: "Email does not exist!" };
+  }
+
+  await db.user.update({
+    where: {
+      id: existingUser.id,
+    },
+    data: {
+      emailVerified: new Date(),
+      email: existingUser.email,
+    },
+  });
+
+  await db.verificationToken.delete({
+    where: {
+      id: existingToken.id,
+    },
+  });
+
+  return { success: "Email verified!" };
 }
 
 async function generateVerificationToken(email: string) {
