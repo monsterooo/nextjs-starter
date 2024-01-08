@@ -1,3 +1,4 @@
+import ResetPasswordTemplate from "@/emails/reset-password-email";
 import { VerifyEmailTemplate } from "@/emails/verification-email";
 import { render } from "jsx-email";
 import { Resend } from "resend";
@@ -16,6 +17,27 @@ export async function SendVerifyEmail({
   link,
 }: BasicEmailProps & { link: string }) {
   const template = <VerifyEmailTemplate link={link} />;
+  const html = await render(template);
+
+  const { data, error } = await resend.emails.send({
+    from: env.EMAIL_FROM,
+    html,
+    to: email,
+    subject: title,
+  });
+
+  if (error) {
+    console.error(error);
+    throw error;
+  }
+}
+
+export async function SendResetEmail({
+  email,
+  title,
+  link,
+}: BasicEmailProps & { link: string }) {
+  const template = <ResetPasswordTemplate link={link} />;
   const html = await render(template);
 
   const { data, error } = await resend.emails.send({
