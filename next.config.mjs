@@ -1,5 +1,4 @@
-
-import "./env.mjs"
+import "./env.mjs";
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -7,6 +6,6 @@ const nextConfig = {
   images: {
     domains: ["avatars.githubusercontent.com"],
   },
-}
+};
 
-export default nextConfig
+export default nextConfig;

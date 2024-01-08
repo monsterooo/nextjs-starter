@@ -42,7 +42,7 @@ export async function register(values: z.infer<typeof registerSchema>) {
 
   // send email verification token
   const verificationToken = await generateVerificationToken(email);
-  const confirmLink = `${domain}/auth/email-verification?token=${verificationToken.token}`;
+  const confirmLink = `${domain}/email-verification?token=${verificationToken.token}`;
 
   if (isProd()) {
     // send verify email
