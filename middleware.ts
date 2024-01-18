@@ -9,12 +9,25 @@ import { authOptions } from "./lib/auth.config";
 
 const { auth } = NextAuth(authOptions);
 
+const matchRoute = (routes: (string | RegExp)[], pathname: string) => {
+  for (const route of routes) {
+    if (route instanceof RegExp) {
+      if (pathname.match(route)) {
+        return true;
+      }
+    } else if (route === pathname) {
+      return true;
+    }
+  }
+  return false;
+};
+
 export default auth((req) => {
   const { nextUrl } = req;
   const isLoggedIn = !!req.auth;
 
   const isApiAuthRoute = nextUrl.pathname.startsWith(apiAuthPrefix);
-  const isPublicRoute = publicRoutes.includes(nextUrl.pathname);
+  const isPublicRoute = matchRoute(publicRoutes, nextUrl.pathname);
   const isAuthRoute = authRoutes.includes(nextUrl.pathname);
 
   if (isApiAuthRoute) {
