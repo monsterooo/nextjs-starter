@@ -38,7 +38,6 @@ export async function POST(req: Request) {
   try {
     const user = await currentUser();
 
-    console.log("~~user~~", user);
     if (!user) {
       return new Response("Unauthorized", { status: 403 });
     }
