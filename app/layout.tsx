@@ -1,7 +1,7 @@
 import { Inter as FontSans } from "next/font/google";
 import localFont from "next/font/local";
-
 import "@/styles/globals.css";
+import { env } from "@/env.mjs";
 import { siteConfig } from "@/config/site";
 import { absoluteUrl, cn } from "@/lib/utils";
 import { Toaster } from "@/components/ui/toaster";
@@ -25,6 +25,7 @@ interface RootLayoutProps {
 }
 
 export const metadata = {
+  metadataBase: new URL(env.VERCEL_URL),
   title: {
     default: siteConfig.name,
     template: `%s | ${siteConfig.name}`,
