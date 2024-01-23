@@ -17,6 +17,11 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./*"],
+      "@easy-email-core/*": ["./components/easy-email-core/*"],
+      "@easy-email-editor/*": ["./components/easy-email-editor/*"],
+      "@easy-email-core": ["./components/easy-email-core"],
+      "@easy-email-editor": ["./components/easy-email-editor"],
+      "@core/*": ["./components/easy-email-core/*"],
       "contentlayer/generated": ["./.contentlayer/generated"]
     },
     "plugins": [
