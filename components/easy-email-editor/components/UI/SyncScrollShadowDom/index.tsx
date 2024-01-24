@@ -99,6 +99,7 @@ export const SyncScrollShadowDom: React.FC<
     }
   }, [ref, setFirstVisibleEle]);
 
+  console.log("root", root);
   return (
     <>
       <div {...(rest as any)} ref={setRef}>

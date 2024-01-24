@@ -14,7 +14,7 @@ import { DesktopEmailPreview } from "./components/DesktopEmailPreview";
 import { EditEmailPreview } from "./components/EditEmailPreview";
 import { MobileEmailPreview } from "./components/MobileEmailPreview";
 import { ToolsPanel } from "./components/ToolsPanel";
-import "./index.scss";
+// import "./index.scss";
 import "@easy-email-editor/assets/font/iconfont.css";
 import { EventManager, EventType } from "@easy-email-editor/utils/EventManager";
 
@@ -82,7 +82,7 @@ export const EmailEditor = () => {
             }
             key={ActiveTabKeys.PC}
           >
-            <DesktopEmailPreview />
+            {/* <DesktopEmailPreview /> */}
           </TabPane>
           <TabPane
             style={{ height: "calc(100% - 50px)" }}

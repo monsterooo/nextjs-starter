@@ -17,10 +17,14 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./*"],
-      "@easy-email-core/*": ["./components/easy-email-core/*"],
-      "@easy-email-editor/*": ["./components/easy-email-editor/*"],
       "@easy-email-core": ["./components/easy-email-core"],
+      "@easy-email-core/*": ["./components/easy-email-core/*"],
       "@easy-email-editor": ["./components/easy-email-editor"],
+      "@easy-email-editor/*": ["./components/easy-email-editor/*"],
+      "@easy-email-extensions": ["./components/easy-email-extensions"],
+      "@easy-email-extensions/*": ["./components/easy-email-extensions/*"],
+      "@extensions": ["./components/easy-email-extensions"],
+      "@extensions/*": ["./components/easy-email-extensions/*"],
       "@core/*": ["./components/easy-email-core/*"],
       "contentlayer/generated": ["./.contentlayer/generated"]
     },

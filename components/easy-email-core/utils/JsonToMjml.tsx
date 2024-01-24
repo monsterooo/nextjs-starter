@@ -41,6 +41,8 @@ export function JsonToMjml(options: JsonToMjmlOption): string {
       </EmailRenderProvider>
     )
   );
+  // console.log("mjmlString:", mjmlString_source);
+  // const mjmlString = "<mjml><mj-body></mj-body></mjml>";
   if (beautify) {
     return html(mjmlString, { indent_size: 2 });
   }

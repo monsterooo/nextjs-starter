@@ -20,13 +20,13 @@ export function DesktopEmailPreview() {
 
   const isActive = activeTab === ActiveTabKeys.PC;
 
-  if (errMsg) {
-    return (
-      <div style={{ textAlign: "center", fontSize: 24, color: "red" }}>
-        <>{errMsg}</>
-      </div>
-    );
-  }
+  // if (errMsg) {
+  //   return (
+  //     <div style={{ textAlign: "center", fontSize: 24, color: "red" }}>
+  //       <>{errMsg}</>
+  //     </div>
+  //   );
+  // }
 
   return (
     <div
@@ -78,7 +78,7 @@ export function DesktopEmailPreview() {
           >
             <>{reactNode}</>
           </div>
-          {createPortal(
+          {/* {createPortal(
             <>
               {fonts.map((item, index) => (
                 <link
@@ -90,7 +90,7 @@ export function DesktopEmailPreview() {
               ))}
             </>,
             document.body
-          )}
+          )} */}
         </>
       </SyncScrollShadowDom>
     </div>

@@ -161,6 +161,9 @@ dependencies:
   cmdk:
     specifier: ^0.1.22
     version: 0.1.22(@types/react@18.0.15)(react-dom@18.2.0)(react@18.2.0)
+  codemirror:
+    specifier: ^5.63.3
+    version: 5.63.3
   concurrently:
     specifier: ^8.0.1
     version: 8.0.1
@@ -170,9 +173,9 @@ dependencies:
   date-fns:
     specifier: ^2.29.3
     version: 2.29.3
-  easy-email-extensions:
-    specifier: ^4.14.2
-    version: 4.14.2(@types/react@18.0.15)(easy-email-core@4.12.2)(easy-email-editor@4.12.2)(react-dom@18.2.0)(react-final-form@6.5.9)(react@18.2.0)
+  file-saver:
+    specifier: ^2.0.5
+    version: 2.0.5
   final-form:
     specifier: ^4.20.10
     version: 4.20.10
@@ -185,6 +188,9 @@ dependencies:
   he:
     specifier: ^1.2.0
     version: 1.2.0
+  html2canvas:
+    specifier: ^1.4.1
+    version: 1.4.1
   is-hotkey:
     specifier: ^0.2.0
     version: 0.2.0
@@ -224,6 +230,12 @@ dependencies:
   nodemailer:
     specifier: ^6.9.1
     version: 6.9.1
+  overlayscrollbars:
+    specifier: ^1.13.2
+    version: 1.13.2
+  overlayscrollbars-react:
+    specifier: ^0.3.0
+    version: 0.3.0(overlayscrollbars@1.13.2)(react@18.2.0)
   postmark:
     specifier: ^3.0.15
     version: 3.0.15
@@ -233,6 +245,9 @@ dependencies:
   react:
     specifier: ^18.2.0
     version: 18.2.0
+  react-codemirror2:
+    specifier: ^7.2.1
+    version: 7.2.1(codemirror@5.63.3)(react@18.2.0)
   react-day-picker:
     specifier: ^8.7.1
     version: 8.7.1(date-fns@2.29.3)(react@18.2.0)
@@ -245,12 +260,18 @@ dependencies:
   react-final-form:
     specifier: ^6.5.9
     version: 6.5.9(final-form@4.20.10)(react@18.2.0)
+  react-final-form-arrays:
+    specifier: ^3.1.4
+    version: 3.1.4(final-form-arrays@3.1.0)(final-form@4.20.10)(react-final-form@6.5.9)(react@18.2.0)
   react-hook-form:
     specifier: ^7.43.9
     version: 7.43.9(react@18.2.0)
   react-textarea-autosize:
     specifier: ^8.4.1
     version: 8.4.1(@types/react@18.0.15)(react@18.2.0)
+  react-use:
+    specifier: ^17.5.0
+    version: 17.5.0(react-dom@18.2.0)(react@18.2.0)
   resend:
     specifier: ^2.1.0
     version: 2.1.0
@@ -1818,14 +1839,6 @@ packages:
     transitivePeerDependencies:
       - supports-color
     dev: true
-
-  /@icons/material@0.2.4(react@18.2.0):
-    resolution: {integrity: sha512-QPcGmICAPbGLGb6F/yNf/KzKqvFx8z5qx3D1yFqVAjoFmXK35EgyW+cJ57Te3CNsmzblwtzakLGFqHPqrfb4Tw==}
-    peerDependencies:
-      react: '*'
-    dependencies:
-      react: 18.2.0
-    dev: false
 
   /@isaacs/cliui@8.0.2:
     resolution: {integrity: sha512-O8jcjabXaleOG9DQ0+ARXWZBTfnP4WNAqzuiJK7ll44AmxGKv/J2M4TPjxjY3znBCfvBXFzucm1twdyFybFqEA==}
@@ -4929,6 +4942,11 @@ packages:
     resolution: {integrity: sha512-1ugUSr8BHXRnK23KfuYS+gVMC3LB8QGH9W1iGtDPsNWoQbgtXSExkBu2aDR4epiGWZOjZsj6lDl/N/AqqTC3UA==}
     dev: false
 
+  /base64-arraybuffer@1.0.2:
+    resolution: {integrity: sha512-I3yl4r9QB5ZRY3XuJVEPfc2XhZO6YweFPI+UovAzn+8/hb3oJ6lnysaFcjVpkCPfVWFUDvoZ8kmVDP7WyRtYtQ==}
+    engines: {node: '>= 0.6.0'}
+    dev: false
+
   /base64-js@1.5.1:
     resolution: {integrity: sha512-AKpaYlHn8t4SVbOHCy+b5+KKgvR4vrsD8vbvrbiQJps7fKDTkjkDry6ji0rUJjC0kzbNePLwzxq8iypo41qeWA==}
     dev: false
@@ -5299,8 +5317,8 @@ packages:
       - '@types/react'
     dev: false
 
-  /codemirror@5.65.16:
-    resolution: {integrity: sha512-br21LjYmSlVL0vFCPWPfhzUCT34FM/pAdK7rRIZwa0rrtrIdotvP4Oh4GUHsu2E3IrQMCfRkL/fN3ytMNxVQvg==}
+  /codemirror@5.63.3:
+    resolution: {integrity: sha512-1C+LELr+5grgJYqwZKqxrcbPsHFHapVaVAloBsFBASbpLnQqLw1U8yXJ3gT5D+rhxIiSpo+kTqN+hQ+9ialIXw==}
     dev: false
 
   /codex-notifier@1.1.2:
@@ -5617,6 +5635,12 @@ packages:
       hyphenate-style-name: 1.0.4
     dev: false
 
+  /css-line-break@2.1.0:
+    resolution: {integrity: sha512-FHcKFCZcAha3LwfVBhCQbW2nCNbkZXn7KVUJcsT5/P8YmfsVja0FMPJr0B903j/E69HUphKiV9iQArX8SDYA4w==}
+    dependencies:
+      utrie: 1.0.2
+    dev: false
+
   /css-selector-parser@3.0.4:
     resolution: {integrity: sha512-pnmS1dbKsz6KA4EW4BznyPL2xxkNDRg62hcD0v8g6DEw2W7hxOln5M953jsp9hmw5Dg57S6o/A8GOn37mbAgcQ==}
     dev: false
@@ -5886,76 +5910,6 @@ packages:
 
   /eastasianwidth@0.2.0:
     resolution: {integrity: sha512-I88TYZWc9XiYHRQ4/3c5rjjfgkjhLyW2luGIheGERbNQ6OY7yTybanSpDXZa8y7VUP9YmDcYa+eyq4ca7iLqWA==}
-
-  /easy-email-core@4.12.2(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-cfl09YInI4RYuNKhZJykQIMs22QbEYBo+BLtDcbiu2hBzJscPOLZ2mW0MQyhu0LJSiVkie+fmQLqmTXcmCCMfg==}
-    peerDependencies:
-      react: ^18.2.0
-      react-dom: ^18.2.0
-    dependencies:
-      he: 1.2.0
-      js-beautify: 1.14.11
-      lodash: 4.17.21
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-      uuid: 8.3.2
-    dev: false
-
-  /easy-email-editor@4.12.2(easy-email-core@4.12.2)(mjml-browser@4.14.1)(react-dom@18.2.0)(react-final-form@6.5.9)(react@18.2.0):
-    resolution: {integrity: sha512-DsGzjJtkxGaEVA+39d6uYd4TL5iUFiFvvq98ATmG+HJP8yvgBphEmGVJ6F8kduMewoEq17AYAwnrb29unvJWlQ==}
-    peerDependencies:
-      easy-email-core: ^4.3.6
-      mjml-browser: ^4.10.4
-      react: ^18.2.0
-      react-dom: ^18.2.0
-      react-final-form: ^6.5.7
-    dependencies:
-      easy-email-core: 4.12.2(react-dom@18.2.0)(react@18.2.0)
-      final-form: 4.20.10
-      final-form-arrays: 3.1.0(final-form@4.20.10)
-      final-form-set-field-touched: 1.0.1(final-form@4.20.10)
-      is-hotkey: 0.2.0
-      lodash: 4.17.21
-      mjml-browser: 4.14.1
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-      react-final-form: 6.5.9(final-form@4.20.10)(react@18.2.0)
-      react-final-form-arrays: 3.1.4(final-form-arrays@3.1.0)(final-form@4.20.10)(react-final-form@6.5.9)(react@18.2.0)
-      react-use: 17.5.0(react-dom@18.2.0)(react@18.2.0)
-    dev: false
-
-  /easy-email-extensions@4.14.2(@types/react@18.0.15)(easy-email-core@4.12.2)(easy-email-editor@4.12.2)(react-dom@18.2.0)(react-final-form@6.5.9)(react@18.2.0):
-    resolution: {integrity: sha512-MTH+dmL+d/jhnEWLWrWLOphTApe4LHZzhs3QAfZDzu00YzelWQ7/2u41CjSBRZl+/UGC9ZUBQCn0FxL6trBEfQ==}
-    peerDependencies:
-      easy-email-core: ^4.3.6
-      easy-email-editor: ^4.3.6
-      react: ^18.2.0
-      react-dom: ^18.2.0
-      react-final-form: ^6.5.7
-    dependencies:
-      '@arco-design/web-react': 2.59.0(@types/react@18.0.15)(react-dom@18.2.0)(react@18.2.0)
-      codemirror: 5.65.16
-      color: 4.2.3
-      easy-email-core: 4.12.2(react-dom@18.2.0)(react@18.2.0)
-      easy-email-editor: 4.12.2(easy-email-core@4.12.2)(mjml-browser@4.14.1)(react-dom@18.2.0)(react-final-form@6.5.9)(react@18.2.0)
-      final-form: 4.20.10
-      final-form-arrays: 3.1.0(final-form@4.20.10)
-      final-form-set-field-touched: 1.0.1(final-form@4.20.10)
-      is-hotkey: 0.2.0
-      lodash: 4.17.21
-      mjml-browser: 4.14.1
-      overlayscrollbars: 1.13.3
-      overlayscrollbars-react: 0.3.0(overlayscrollbars@1.13.3)(react@18.2.0)
-      react: 18.2.0
-      react-codemirror2: 7.3.0(codemirror@5.65.16)(react@18.2.0)
-      react-color: 2.19.3(react@18.2.0)
-      react-dom: 18.2.0(react@18.2.0)
-      react-final-form: 6.5.9(final-form@4.20.10)(react@18.2.0)
-      react-final-form-arrays: 3.1.4(final-form-arrays@3.1.0)(final-form@4.20.10)(react-final-form@6.5.9)(react@18.2.0)
-      react-use: 17.5.0(react-dom@18.2.0)(react@18.2.0)
-    transitivePeerDependencies:
-      - '@types/react'
-    dev: false
 
   /editorconfig@1.0.4:
     resolution: {integrity: sha512-L9Qe08KWTlqYMVvMcTIvMAdl1cDUubzRNYL+WfA4bLDMHe4nemKkpmYzkznE1FwLKu0EEmy6obgQKzMJrg4x9Q==}
@@ -6640,6 +6594,10 @@ packages:
     engines: {node: ^10.12.0 || >=12.0.0}
     dependencies:
       flat-cache: 3.2.0
+
+  /file-saver@2.0.5:
+    resolution: {integrity: sha512-P9bmyZ3h/PRG+Nzga+rbdI4OEpNDzAVyy74uVO9ATgzLK6VtAsYybF/+TOCvrc0MO793d6+42lLyZTw7/ArVzA==}
+    dev: false
 
   /fill-range@7.0.1:
     resolution: {integrity: sha512-qOo9F+dMUmC2Lcb4BbVvnKJxTPjCm+RRpe4gDuGrzkL7mEVl/djYSu2OdQ2Pa302N4oqkSg9ir6jaLWJ2USVpQ==}
@@ -7427,6 +7385,14 @@ packages:
     resolution: {integrity: sha512-bEqo66MRXsUGxWHV5IP0PUiAWwoEjba4VCzg0LjFJBpchPaTfyfCKTG6bc5F8ucKec3q5y6qOdGyYTSBEvhCrg==}
     dev: false
 
+  /html2canvas@1.4.1:
+    resolution: {integrity: sha512-fPU6BHNpsyIhr8yyMpTLLxAbkaK8ArIBcmZIRiBLiDhjeqvXolaEmDGmELFuX9I4xDcaKKcJl+TKZLqruBbmWA==}
+    engines: {node: '>=8.0.0'}
+    dependencies:
+      css-line-break: 2.1.0
+      text-segmentation: 1.0.3
+    dev: false
+
   /htmlparser2@8.0.2:
     resolution: {integrity: sha512-GYdjWKDkbRLkZ5geuHs5NY1puJ+PXwP7+fHPRz06Eirsb9ugf6d8kkXav6ADhcODhFFPMIXyxkxSuMf3D6NCFA==}
     dependencies:
@@ -8102,10 +8068,6 @@ packages:
     dependencies:
       p-locate: 5.0.0
 
-  /lodash-es@4.17.21:
-    resolution: {integrity: sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==}
-    dev: false
-
   /lodash.camelcase@4.3.0:
     resolution: {integrity: sha512-TwuEnCnxbc3rAvhf/LbG7tJUDzhqXyFnv3dtzLOPgCG/hODL7WFnsbwktkD7yUV0RrreP/l1PALq/YSg6VvjlA==}
 
@@ -8259,10 +8221,6 @@ packages:
     resolution: {integrity: sha512-t8eP0dXRJMtMvBojtkcsA7n48BkauktUKzfkPSCq85ZMTJ0v76Rke4DYz01omYpPTUh4p/f7HePgRo3ebG8+QQ==}
     engines: {node: '>= 16'}
     hasBin: true
-    dev: false
-
-  /material-colors@1.2.6:
-    resolution: {integrity: sha512-6qE4B9deFBIa9YSpOc9O0Sgc43zTeVYbgDT5veRKSlB2+ZuHNoVVxA1L/ckMUayV9Ay9y7Z/SZCLcGteW9i7bg==}
     dev: false
 
   /md-to-react-email@5.0.0(react@18.2.0):
@@ -9461,18 +9419,18 @@ packages:
     resolution: {integrity: sha512-gjcpUc3clBf9+210TRaDWbf+rZZZEshZ+DlXMRCeAjp0xhTrnQsKHypIy1J3d5hKdUzj69t708EHtU8P6bUn0A==}
     dev: false
 
-  /overlayscrollbars-react@0.3.0(overlayscrollbars@1.13.3)(react@18.2.0):
+  /overlayscrollbars-react@0.3.0(overlayscrollbars@1.13.2)(react@18.2.0):
     resolution: {integrity: sha512-dV74p9VL/aImqJpeYz0vmpScZYu6UiNTmRKfyI4CS0OYUpYCUiTd723adY38Grz2W57hoNCECWDzkOJRFDQeZg==}
     peerDependencies:
       overlayscrollbars: ^1.10.0
       react: ^16.4.0 || ^17.0.0 || ^18.0.0
     dependencies:
-      overlayscrollbars: 1.13.3
+      overlayscrollbars: 1.13.2
       react: 18.2.0
     dev: false
 
-  /overlayscrollbars@1.13.3:
-    resolution: {integrity: sha512-1nB/B5kaakJuHXaLXLRK0bUIilWhUGT6q5g+l2s5vqYdLle/sd0kscBHkQC1kuuDg9p9WR4MTdySDOPbeL/86g==}
+  /overlayscrollbars@1.13.2:
+    resolution: {integrity: sha512-xk9eJ8fpuh28WABSDpMpOv90aDQk+x5wLeqU4AGbJg56eGLeKxVPQzMxeX6+BM2dsIIOcBj3Fwvn8A0EzhHN3g==}
     dev: false
 
   /p-defer@1.0.0:
@@ -10073,29 +10031,14 @@ packages:
       react: 18.2.0
     dev: false
 
-  /react-codemirror2@7.3.0(codemirror@5.65.16)(react@18.2.0):
-    resolution: {integrity: sha512-gCgJPXDX+5iaPolkHAu1YbJ92a2yL7Je4TuyO3QEqOtI/d6mbEk08l0oIm18R4ctuT/Sl87X63xIMBnRQBXYXA==}
+  /react-codemirror2@7.2.1(codemirror@5.63.3)(react@18.2.0):
+    resolution: {integrity: sha512-t7YFmz1AXdlImgHXA9Ja0T6AWuopilub24jRaQdPVbzUJVNKIYuy3uCFZYa7CE5S3UW6SrSa5nAqVQvtzRF9gw==}
     peerDependencies:
       codemirror: 5.x
-      react: '>=15.5 <=17.x'
+      react: '>=15.5 <=16.x'
     dependencies:
-      codemirror: 5.65.16
+      codemirror: 5.63.3
       react: 18.2.0
-    dev: false
-
-  /react-color@2.19.3(react@18.2.0):
-    resolution: {integrity: sha512-LEeGE/ZzNLIsFWa1TMe8y5VYqr7bibneWmvJwm1pCn/eNmrabWDh659JSPn9BuaMpEfU83WTOJfnCcjDZwNQTA==}
-    peerDependencies:
-      react: '*'
-    dependencies:
-      '@icons/material': 0.2.4(react@18.2.0)
-      lodash: 4.17.21
-      lodash-es: 4.17.21
-      material-colors: 1.2.6
-      prop-types: 15.8.1
-      react: 18.2.0
-      reactcss: 1.2.3(react@18.2.0)
-      tinycolor2: 1.6.0
     dev: false
 
   /react-day-picker@8.7.1(date-fns@2.29.3)(react@18.2.0):
@@ -10357,15 +10300,6 @@ packages:
     engines: {node: '>=0.10.0'}
     dependencies:
       loose-envify: 1.4.0
-    dev: false
-
-  /reactcss@1.2.3(react@18.2.0):
-    resolution: {integrity: sha512-KiwVUcFu1RErkI97ywr8nvx8dNOpT03rbnma0SSalTYjkrPYaEajR4a/MRt6DZ46K6arDRbWMNHF+xH7G7n/8A==}
-    peerDependencies:
-      react: '*'
-    dependencies:
-      lodash: 4.17.21
-      react: 18.2.0
     dev: false
 
   /read-cache@1.0.0:
@@ -11604,6 +11538,12 @@ packages:
     engines: {node: '>=0.10'}
     dev: true
 
+  /text-segmentation@1.0.3:
+    resolution: {integrity: sha512-iOiPUo/BGnZ6+54OsWxZidGCsdU8YbE4PSpdPinp7DeMtUJNJBoJ/ouUSTJjHkh1KntHaltHl/gDs2FC4i5+Nw==}
+    dependencies:
+      utrie: 1.0.2
+    dev: false
+
   /text-table@0.2.0:
     resolution: {integrity: sha512-N+8UisAXDGk8PFXP4HAzVR9nbfmVJ3zYLAWiTIoqC5v5isinhr+r5uaO8+7r3BMfuNIufIsA7RdpVgacC2cSpw==}
 
@@ -11638,10 +11578,6 @@ packages:
     engines: {node: '>=0.6.0'}
     dependencies:
       setimmediate: 1.0.5
-    dev: false
-
-  /tinycolor2@1.6.0:
-    resolution: {integrity: sha512-XPaBkWQJdsf3pLKJV9p4qN/S+fm2Oj8AIPo1BTUhg5oxkvm9+SVEGFdhyOz7tTdUTfvxMiAs4sp6/eZO2Ew+pw==}
     dev: false
 
   /titleize@4.0.0:
@@ -12074,6 +12010,12 @@ packages:
       is-generator-function: 1.0.10
       is-typed-array: 1.1.12
       which-typed-array: 1.1.13
+    dev: false
+
+  /utrie@1.0.2:
+    resolution: {integrity: sha512-1MLa5ouZiOmQzUbjbu9VmjLzn1QLXBhwpUa7kdLUQK+KQ5KA9I1vk5U4YHe/X2Ch7PYnJfWuWT+VbuxbGwljhw==}
+    dependencies:
+      base64-arraybuffer: 1.0.2
     dev: false
 
   /uuid@8.3.2:

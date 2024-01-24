@@ -2,7 +2,8 @@ import React, { useCallback, useEffect, useState } from "react";
 import { classnames } from "@easy-email-editor/utils/classnames";
 import { Button } from "../Button";
 import { Stack } from "../Stack";
-import "./index.scss";
+
+// import "./index.scss";
 
 export interface TabsProps {
   children?: React.ReactNode;

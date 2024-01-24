@@ -1,7 +1,12 @@
 import { Inter as FontSans } from "next/font/google";
 import localFont from "next/font/local";
 import "@/styles/globals.css";
-import ReactDom from "next/dist/compiled/react-dom/cjs/react-dom-server-legacy.browser.development";
+import "@arco-design/web-react/dist/css/arco.css";
+// editor
+import "@/components/easy-email-editor/components/EmailEditor/index.scss";
+import "@/components/easy-email-editor/components/UI/Tabs/index.scss";
+import "@/components/easy-email-extensions/index.scss";
+// editor end
 import { env } from "@/env.mjs";
 import { siteConfig } from "@/config/site";
 import { absoluteUrl, cn } from "@/lib/utils";

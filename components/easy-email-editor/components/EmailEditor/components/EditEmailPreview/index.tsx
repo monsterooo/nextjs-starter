@@ -71,7 +71,8 @@ export function EditEmailPreview() {
         >
           <MjmlDomRender />
         </div>
-        <ShadowStyle />
+        {/* TODO 稍后要实现 */}
+        {/* <ShadowStyle /> */}
       </SyncScrollShadowDom>
     ),
     [activeTab]
